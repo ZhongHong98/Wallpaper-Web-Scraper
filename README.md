@@ -66,7 +66,7 @@ python wallpaper_scraper.py
 
 The wallpapers will be downloaded automatically.
 
-📁 Python file: [View Python File](Python/Wallpaper_Download.py)
+📁 Python file: [View Python File](Python/Wallpapers_Download.py)
 
 ## ⚠️ Disclaimer
 
