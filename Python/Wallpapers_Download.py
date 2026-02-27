@@ -1,59 +1,3 @@
-# # Technologies used
-# # 1. Request: send requests to get data from the server
-# # 2. BeautifulSoup: parse the entire page source code -> very simple
-
-# import requests
-# from bs4 import BeautifulSoup
-
-# # The first step in web scraping: send a request to the server
-# resp = requests.get("https://wallpaperscraft.com/catalog/anime/page171")  # get source code from the server
-
-# # Find specific elements on the page
-# # find() -> find one element
-# # find_all() -> find all elements
-
-# root_url = "https://wallpaperscraft.com"
-# n = 1876
-
-# while True:
-#     # Parse HTML
-#     main_page = BeautifulSoup(resp.text, "lxml")
-#     image_list = main_page.find("div", attrs={"class": "wallpapers wallpapers_zoom wallpapers_main"}).find_all("a", attrs={"class": "wallpapers__link"})
-
-#     for image in image_list:
-#         # Send request to the child page
-#         href = root_url + image.get("href")  # "https://wallpaperscraft.com/" + "/wallpaper/sakura_art_sky_122545"
-#         resp1 = requests.get(href)
-#         resp1.encoding = "utf-8"
-#         child_page = BeautifulSoup(resp1.text, "lxml")
-
-#         # Go to the 1920x1080 page
-#         if child_page.find("a", string="1920x1080") is not None:
-#             href_resolution = root_url + child_page.find("a", string="1920x1080").get("href")
-#             resp2 = requests.get(href_resolution)
-#             resolution_page = BeautifulSoup(resp2.text, "lxml")
-
-#             # Go to the download page
-#             href_image = resolution_page.find("a", attrs={"class", "gui-button gui-button_full-height"}).get("href")
-#             resp3 = requests.get(href_image)
-#             image_page = BeautifulSoup(resp3.text, "lxml")
-#             print(href_image)
-
-#             # Create file
-#             f = open("Wallpaper_Anime_%s.jpg" % n, mode="wb")  # wb means writing a non-text (binary) file
-#             f.write(requests.get(href_image).content)  # get image binary data, not text
-
-#             n += 1  # increment n by 1
-#         else:
-#             print("this image doesn't have 1080p resolution")
-
-#     if main_page.find("a", attrs={"class": "pager__link"}, string="→") is None:
-#         break
-
-#     href_next = root_url + main_page.find("a", attrs={"class": "pager__link"}, string="→").get("href")
-#     resp = requests.get(href_next)
-#     print(href_next)
-
 import requests
 from bs4 import BeautifulSoup
 import os
@@ -120,3 +64,4 @@ while True:
     # Added verify=False here
     resp = requests.get(href_next, verify=False)
     print(f"Next page: {href_next}")
+
